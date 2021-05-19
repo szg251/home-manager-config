@@ -172,3 +172,6 @@ nnoremap <Leader>f :RG
 nmap ghs <Plug>(GitGutterStageHunk)
 nmap ghu <Plug>(GitGutterUndoHunk)
 nmap ghp <Plug>(GitGutterPreviewHunk)
+
+" Fugitive
+map <leader>b :GBrowse<CR>

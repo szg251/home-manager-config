@@ -60,8 +60,11 @@ in {
       vim-unimpaired
       fzf-vim
       ReplaceWithRegister
+
       vim-gitgutter
       vim-fugitive
+      vim-rhubarb
+
       vim-commentary
       vim-rooter
       neoformat
