@@ -114,6 +114,7 @@ in {
       protocol.version = "2";
       core.commitGraph = true;
       gc.writeCommitGraph = true;
+      push.default = "current";
     };
   };
 
