@@ -123,13 +123,13 @@ in {
 
   programs.bat = {
     enable = true;
-    config = { theme = "gruvbox"; };
+    config = { theme = "gruvbox-dark"; };
   };
 
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
-    enableNixDirenvIntegration = true;
+    nix-direnv.enable = true;
   };
 
   home.packages = with pkgs; [
@@ -157,8 +157,8 @@ in {
     gitlab-runner
     niv
     cachix
-    newman
     plantuml
+    cabal2nix
 
     ghc
     haskell-language-server
