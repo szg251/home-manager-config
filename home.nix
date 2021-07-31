@@ -7,8 +7,8 @@ let
     url = "https://ihp.digitallyinduced.com/ihp-new.tar.gz";
     sha256 = "0xb6b5xdzblglgb5azbiy848m5wywsp02di2yn2zc6nmb456x52d";
   };
-in {
-
+in
+{
   home.username = "gergo";
   home.homeDirectory = "/Users/gergo";
 
@@ -67,12 +67,11 @@ in {
 
       vim-commentary
       vim-rooter
-      neoformat
       vim-repeat
       rnvimr
 
       # Looks
-      gruvbox
+      awesome-vim-colorschemes
       vim-airline
 
       # Language support
@@ -81,6 +80,8 @@ in {
       haskell-vim
       coc-nvim
       coc-tsserver
+      coc-metals # Scala language server
+      coc-solargraph
       typescript-vim
       purescript-vim
       coc-json
@@ -99,7 +100,7 @@ in {
     baseIndex = 1;
     historyLimit = 500000;
     extraConfig = builtins.readFile ./home/tmuxConfig.conf;
-    plugins = with pkgs.tmuxPlugins; [ battery ];
+    plugins = [ pkgs.tmuxPlugins.battery ];
   };
 
   programs.git = {
@@ -150,6 +151,7 @@ in {
     google-cloud-sdk
     nodePackages.serverless
     # nodePackages.vercel
+    ipfs
 
     # Dev tools
     gh
@@ -159,14 +161,19 @@ in {
     cachix
     plantuml
     cabal2nix
-
     ghc
     haskell-language-server
+    elmPackages.elm-language-server
+    elmPackages.elm-format
+    elmPackages.elm-test
+    rnix-lsp
     cabal-install
     nodejs
     yarn
     nixfmt
     ormolu
+    haskellPackages.fourmolu
+    haskellPackages.hoogle
     ihp-new
     nodePackages.node2nix
   ];

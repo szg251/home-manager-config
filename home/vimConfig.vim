@@ -1,6 +1,6 @@
 set nocompatible
 set number relativenumber
-set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 set ai!
 set foldmethod=syntax
 setglobal foldlevelstart=99
@@ -64,6 +64,9 @@ let g:haskell_indent_guard = 2
 let g:haskell_indent_case_alternative = 1
 let g:cabal_indent_section = 2
 
+" elm-vim
+let g:elm_setup_keybindings = 0
+
 " NERDTree settings
 " let g:NERDSpaceDelims            = 1
 " let g:NERDDefaultAlign           = 'left'
@@ -94,10 +97,10 @@ let g:cabal_indent_section = 2
 "     \ }
 
 " Auto format
- augroup fmt
-   autocmd!
-   autocmd BufWritePre *.{hs,nix} undojoin | Neoformat
- augroup END
+ " augroup fmt
+ "   autocmd!
+ "   autocmd BufWritePre *.{hs,nix} undojoin | Neoformat
+ " augroup END
 
 " FZF RG advanced
 function! RipgrepFzf(query, fullscreen)
