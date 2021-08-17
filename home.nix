@@ -115,7 +115,7 @@ in {
   programs.git = {
     enable = true;
     userName = "Szabo Gergely";
-    userEmail = "geg251@protonmail.com";
+    userEmail = "gege251@mailbox.org";
     extraConfig = {
       hub.protocol = "https";
       github.user = "gege251";
