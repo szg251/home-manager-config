@@ -67,17 +67,13 @@ let g:cabal_indent_section = 2
 " elm-vim
 let g:elm_setup_keybindings = 0
 
-" NERDTree settings
-" let g:NERDSpaceDelims            = 1
-" let g:NERDDefaultAlign           = 'left'
-" let g:NERDCommentEmptyLines      = 1
-" let g:NERDTrimTrailingWhitespace = 1
-" let g:NERDTreeQuitOnOpen         = 1
-" let g:NERDTreeShowHidden         = 1
+" WMGraphviz
+let g:WMGraphviz_output = 'svg'
 
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-" autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-"     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+augroup graphviz
+ autocmd!
+ autocmd BufWritePost *.{dot} GraphvizCompile
+augroup END
 
 " Ctrl P settings
 " let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|elm-stuff'
@@ -97,10 +93,10 @@ let g:elm_setup_keybindings = 0
 "     \ }
 
 " Auto format
- " augroup fmt
- "   autocmd!
- "   autocmd BufWritePre *.{hs,nix} undojoin | Neoformat
- " augroup END
+augroup fmt
+ autocmd!
+ autocmd BufWritePre *.{cabal,nix} undojoin | Neoformat
+augroup END
 
 " FZF RG advanced
 function! RipgrepFzf(query, fullscreen)
@@ -151,11 +147,6 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
-" NERDTree
-" nnoremap <C-n> :NERDTreeToggle<CR>
-" nnoremap <leader>n :NERDTreeFind<CR>
-" nnoremap <leader>m :NERDTreeMirror<CR>
 
 " Coc Explorer
 nnoremap <leader>e :CocCommand explorer<CR>

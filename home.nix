@@ -7,8 +7,7 @@ let
     url = "https://ihp.digitallyinduced.com/ihp-new.tar.gz";
     sha256 = "0xb6b5xdzblglgb5azbiy848m5wywsp02di2yn2zc6nmb456x52d";
   };
-in
-{
+in {
   home.username = "gergo";
   home.homeDirectory = "/Users/gergo";
 
@@ -69,6 +68,7 @@ in
       vim-rooter
       vim-repeat
       rnvimr
+      neoformat
 
       # Looks
       awesome-vim-colorschemes
@@ -86,7 +86,7 @@ in
       purescript-vim
       coc-json
       coc-prettier
-      plantuml-syntax
+      wmgraphviz-vim
     ];
   };
 
@@ -100,7 +100,16 @@ in
     baseIndex = 1;
     historyLimit = 500000;
     extraConfig = builtins.readFile ./home/tmuxConfig.conf;
-    plugins = [ pkgs.tmuxPlugins.battery ];
+    plugins = [{
+      plugin = pkgs.tmuxPlugins.battery;
+      extraConfig = ''
+        set -g @batt_icon_status_charged '+'
+        set -g @batt_icon_status_charging '+'
+        set -g @batt_icon_status_attached '±'
+        set -g @batt_icon_status_discharging '-'
+        set-option -g status-right "#{battery_percentage} #{battery_icon_status} #{battery_icon_charge}  %a %d %b %H:%M "
+      '';
+    }];
   };
 
   programs.git = {
@@ -159,7 +168,6 @@ in
     gitlab-runner
     niv
     cachix
-    plantuml
     cabal2nix
     ghc
     haskell-language-server
@@ -173,6 +181,7 @@ in
     nixfmt
     ormolu
     haskellPackages.fourmolu
+    haskellPackages.cabal-fmt
     haskellPackages.hoogle
     ihp-new
     nodePackages.node2nix
