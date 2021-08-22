@@ -34,7 +34,6 @@ in {
       VISUAL = EDITOR;
       GIT_EDITOR = EDITOR;
       PATH = "$HOME/bin:/usr/local/bin:$HOME/mutable_node_modules/bin:$PATH";
-      BITKEY_SERVICE_NPM_TOKEN = secrets.bitkeyServiceNpmToken;
     };
     initExtra = ''
       test -f ~/.nix-profile/etc/profile.d/nix.sh && source ~/.nix-profile/etc/profile.d/nix.sh
