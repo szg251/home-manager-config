@@ -153,8 +153,8 @@ nnoremap <leader>e :CocCommand explorer<CR>
 
 " FZF
 
-nnoremap <C-p> :Files<CR>
-nnoremap <Leader>f :RG 
+nnoremap <Leader>p :Files<CR>
+nnoremap <Leader>f :RG<CR>
 
 " CtrlSF settings
 " nmap <leader>a :CtrlSF -R ""<Left>

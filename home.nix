@@ -87,6 +87,7 @@ in {
       coc-json
       coc-prettier
       wmgraphviz-vim
+      vim-solidity
     ];
   };
 
@@ -148,6 +149,8 @@ in {
     bash
     bash-completion
     unrar
+    nix-tree
+    nix-prefetch-git
 
     silver-searcher
     fzf
