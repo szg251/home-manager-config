@@ -5,7 +5,6 @@ let
   ihp-new = builtins.fetchTarball {
     name = "ihp-new";
     url = "https://ihp.digitallyinduced.com/ihp-new.tar.gz";
-    sha256 = "0xb6b5xdzblglgb5azbiy848m5wywsp02di2yn2zc6nmb456x52d";
   };
 in {
   home.username = "gergo";
