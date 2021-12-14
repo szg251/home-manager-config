@@ -20,7 +20,6 @@ set cmdheight=2
 set mouse=a
 set clipboard=unnamed
 
-
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
@@ -148,13 +147,17 @@ function! s:show_documentation()
   endif
 endfunction
 
-" Coc Explorer
-nnoremap <leader>e :CocCommand explorer<CR>
 
 " FZF
 
 nnoremap <Leader>p :Files<CR>
 nnoremap <Leader>f :RG<CR>
+
+" Telescope
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+" nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+" nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " CtrlSF settings
 " nmap <leader>a :CtrlSF -R ""<Left>
@@ -169,3 +172,40 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 
 " Fugitive
 map <leader>b :GBrowse<CR>
+
+" Nvim tree
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+lua <<EOF
+  require'nvim-tree'.setup {
+    auto_close = true,
+    open_on_tab = true,
+    disable_netrw = false,
+    update_focused_file = {
+      enable = true
+    }
+  }
+EOF
+
+nnoremap <leader>e :NvimTreeToggle<CR>
+
+
+" lua <<EOF
+" -- require'nvim-treesitter.install'.compilers = { "clang++" } -- Setting compiler for Haskell treesitter
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+"   highlight = {
+"     enable = true,              -- false will disable the whole extension
+"     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+"     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+"     -- Using this option may slow down your editor, and you may see some duplicate highlights.
+"     -- Instead of true it can also be a list of languages
+"     additional_vim_regex_highlighting = false,
+"   },
+" }
+" EOF

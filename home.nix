@@ -16,6 +16,7 @@ in {
 
   programs.zsh = {
     enable = true;
+    enableCompletion = false;
     oh-my-zsh = {
       enable = true;
       theme = "lambda";
@@ -23,6 +24,7 @@ in {
     };
     shellAliases = {
       oni = "/Applications/Onivim2.app/Contents/MacOS/Oni2";
+      md = "/Applications/Markdown Editor.app/Contents/MacOS/Markdown Editor";
       vim = "nvim";
       gitclean = ''
         git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'';
@@ -38,6 +40,9 @@ in {
       test -f ~/.nix-profile/etc/profile.d/nix.sh && source ~/.nix-profile/etc/profile.d/nix.sh
       test -f /etc/static/zshrc && source /etc/static/zshrc
       test -g "~/.iterm2_shell_integration.zsh" && source "~/.iterm2_shell_integration.zsh"
+
+      # bear autocomplete setup
+      BEAR_AC_ZSH_SETUP_PATH=/Users/gergo/Library/Caches/@sloansparger/bear/autocomplete/zsh_setup && test -f $BEAR_AC_ZSH_SETUP_PATH && source $BEAR_AC_ZSH_SETUP_PATH;
     '';
   };
 
@@ -50,13 +55,19 @@ in {
       # General
       matchit-zip
       delimitMate
-      coc-explorer
+      # coc-explorer
+      nvim-web-devicons
+      nvim-tree-lua
 
       vim-surround
       tabular
       vim-unimpaired
       fzf-vim
       ReplaceWithRegister
+      # telescope-nvim
+      # telescope-fzf-native-nvim
+      # plenary-nvim
+      # nvim-treesitter
 
       vim-gitgutter
       vim-fugitive
@@ -80,6 +91,7 @@ in {
       coc-tsserver
       coc-metals # Scala language server
       coc-solargraph
+      coc-rust-analyzer
       typescript-vim
       purescript-vim
       coc-json
@@ -153,6 +165,7 @@ in {
     silver-searcher
     fzf
     ripgrep
+    fd
     ranger
 
     # Cloud tools
