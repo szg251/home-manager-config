@@ -111,6 +111,13 @@ command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 " Coc Settings
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
+" Mkdx (markdown)
+let g:mkdx#settings = { 'highlight': { 'enable': 1 },
+                    \ 'enter': { 'shift': 1 },
+                    \ 'links': { 'external': { 'enable': 1 } },
+                    \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+                    \ 'fold': { 'enable': 1 } }
+
 """"""""""""""""""""""
 " Keyboard Shortcuts "
 "                    "
@@ -132,10 +139,10 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 nnoremap <leader>d :call <SID>show_documentation()<CR>
 
 " GoTo code navigation.
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
+nmap <leader>cd <Plug>(coc-definition)
+nmap <leader>ct <Plug>(coc-type-definition)
+nmap <leader>ci <Plug>(coc-implementation)
+nmap <leader>cr <Plug>(coc-references)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -172,6 +179,12 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 
 " Fugitive
 map <leader>b :GBrowse<CR>
+map <leader>gs :G<CR>
+map <leader>gl :diffget //2<CR>
+map <leader>gr :diffget //3<CR>
+
+" Markdown Preview
+map <leader>mp :MarkdownPreviewToggle<CR>
 
 " Nvim tree
 let g:nvim_tree_quit_on_open = 1

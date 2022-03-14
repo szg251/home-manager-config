@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  secrets = import ./secrets.nix;
   ihp-new = builtins.fetchTarball {
     name = "ihp-new";
     url = "https://ihp.digitallyinduced.com/ihp-new.tar.gz";
@@ -10,7 +9,7 @@ in {
   home.username = "gergo";
   home.homeDirectory = "/Users/gergo";
 
-  home.stateVersion = "21.05";
+  home.stateVersion = "21.11";
 
   programs.home-manager.enable = true;
 
@@ -19,12 +18,11 @@ in {
     enableCompletion = false;
     oh-my-zsh = {
       enable = true;
-      theme = "lambda";
+      theme = "ys";
       plugins = [ "git" "vi-mode" "fzf" ];
     };
     shellAliases = {
-      oni = "/Applications/Onivim2.app/Contents/MacOS/Oni2";
-      md = "/Applications/Markdown Editor.app/Contents/MacOS/Markdown Editor";
+      # oni = "/Applications/Onivim2.app/Contents/MacOS/Oni2";
       vim = "nvim";
       gitclean = ''
         git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'';
@@ -55,7 +53,6 @@ in {
       # General
       matchit-zip
       delimitMate
-      # coc-explorer
       nvim-web-devicons
       nvim-tree-lua
 
@@ -89,15 +86,18 @@ in {
       haskell-vim
       coc-nvim
       coc-tsserver
-      coc-metals # Scala language server
-      coc-solargraph
-      coc-rust-analyzer
+      # coc-metals # Scala language server
+      # coc-solargraph
+      # coc-rust-analyzer
       typescript-vim
       purescript-vim
       coc-json
       coc-prettier
       wmgraphviz-vim
       vim-solidity
+      # mkdx
+      markdown-preview-nvim
+      vimtex
     ];
   };
 
@@ -160,7 +160,10 @@ in {
     bash-completion
     unrar
     nix-tree
-    nix-prefetch-git
+    # nix-prefetch-git
+    lastpass-cli
+    tldr
+    graphviz
 
     silver-searcher
     fzf
@@ -169,10 +172,10 @@ in {
     ranger
 
     # Cloud tools
-    awscli
+    # awscli
     amazon-ecs-cli
     google-cloud-sdk
-    nodePackages.serverless
+    # nodePackages.serverless
     # nodePackages.vercel
     ipfs
 
@@ -182,8 +185,10 @@ in {
     gitlab-runner
     niv
     cachix
-    cabal2nix
+    # cabal2nix
     ghc
+    purescript
+    spago
     haskell-language-server
     elmPackages.elm-language-server
     elmPackages.elm-format
@@ -197,7 +202,8 @@ in {
     haskellPackages.fourmolu
     haskellPackages.cabal-fmt
     haskellPackages.hoogle
-    ihp-new
-    nodePackages.node2nix
+    # ihp-new
+    # nodePackages.node2nix
+    latexrun
   ];
 }
