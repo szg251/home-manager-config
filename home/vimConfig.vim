@@ -69,6 +69,8 @@ let g:elm_setup_keybindings = 0
 " WMGraphviz
 let g:WMGraphviz_output = 'svg'
 
+map <leader>mg :GraphvizShow<CR>
+
 augroup graphviz
  autocmd!
  autocmd BufWritePost *.{dot} GraphvizCompile
@@ -94,7 +96,7 @@ augroup END
 " Auto format
 augroup fmt
  autocmd!
- autocmd BufWritePre *.{cabal,nix} undojoin | Neoformat
+ autocmd BufWritePre *.{cabal,nix,purs} undojoin | Neoformat
 augroup END
 
 " FZF RG advanced
@@ -186,32 +188,46 @@ map <leader>gr :diffget //3<CR>
 " Markdown Preview
 map <leader>mp :MarkdownPreviewToggle<CR>
 
-" Nvim tree
-let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 0,
-    \ 'files': 0,
-    \ 'folder_arrows': 0,
-    \ }
-lua <<EOF
-  require'nvim-tree'.setup {
-    auto_close = true,
-    open_on_tab = true,
-    disable_netrw = false,
-    update_focused_file = {
-      enable = true
-    }
-  }
-EOF
-
-nnoremap <leader>e :NvimTreeToggle<CR>
-
-
+" " Nvim tree
+" let g:nvim_tree_quit_on_open = 1
+" let g:nvim_tree_show_icons = {
+"     \ 'git': 1,
+"     \ 'folders': 0,
+"     \ 'files': 0,
+"     \ 'folder_arrows': 0,
+"     \ }
 " lua <<EOF
-" -- require'nvim-treesitter.install'.compilers = { "clang++" } -- Setting compiler for Haskell treesitter
+"   require'nvim-tree'.setup {
+"     open_on_tab = true,
+"     disable_netrw = false,
+"     update_focused_file = {
+"       enable = true
+"     }
+"   }
+" EOF
+
+" Fern
+function! s:init_fern() abort
+  nmap <buffer> o <Plug>(fern-action-expand)
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
+
+
+" nnoremap <leader>e :NvimTreeToggle<CR>
+nnoremap <leader>e :Fern . -reveal=% -opener=tabedit<CR>
+
+
+
+
+" " Treesitter
+" lua <<EOF
 " require'nvim-treesitter.configs'.setup {
-"   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+"   -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 "   highlight = {
 "     enable = true,              -- false will disable the whole extension
 "     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.

@@ -5,7 +5,8 @@ let
     name = "ihp-new";
     url = "https://ihp.digitallyinduced.com/ihp-new.tar.gz";
   };
-in {
+in
+{
   home.username = "gergo";
   home.homeDirectory = "/Users/gergo";
 
@@ -33,14 +34,16 @@ in {
       VISUAL = EDITOR;
       GIT_EDITOR = EDITOR;
       PATH = "$HOME/bin:/usr/local/bin:$HOME/mutable_node_modules/bin:$PATH";
+      DISABLE_AUTO_TITLE = "true";
     };
     initExtra = ''
       test -f ~/.nix-profile/etc/profile.d/nix.sh && source ~/.nix-profile/etc/profile.d/nix.sh
       test -f /etc/static/zshrc && source /etc/static/zshrc
       test -g "~/.iterm2_shell_integration.zsh" && source "~/.iterm2_shell_integration.zsh"
 
-      # bear autocomplete setup
-      BEAR_AC_ZSH_SETUP_PATH=/Users/gergo/Library/Caches/@sloansparger/bear/autocomplete/zsh_setup && test -f $BEAR_AC_ZSH_SETUP_PATH && source $BEAR_AC_ZSH_SETUP_PATH;
+      precmd() {
+        echo -ne "\e]1;$(pwd | sed 's/.*\///')\a"
+      }
     '';
   };
 
@@ -54,7 +57,9 @@ in {
       matchit-zip
       delimitMate
       nvim-web-devicons
-      nvim-tree-lua
+      # nvim-tree-lua
+      fern-vim
+      FixCursorHold-nvim # for fern
 
       vim-surround
       tabular
@@ -105,7 +110,6 @@ in {
     enable = true;
     prefix = "C-b";
     keyMode = "vi";
-    customPaneNavigationAndResize = true;
     terminal = "screen-256color";
     escapeTime = 10;
     baseIndex = 1;
@@ -154,17 +158,17 @@ in {
   };
 
   home.packages = with pkgs; [
+    # General CLI tools
     jq
     tree
     bash
     bash-completion
     unrar
-    nix-tree
-    # nix-prefetch-git
     lastpass-cli
     tldr
-    graphviz
+    rates
 
+    # File management
     silver-searcher
     fzf
     ripgrep
@@ -177,33 +181,52 @@ in {
     google-cloud-sdk
     # nodePackages.serverless
     # nodePackages.vercel
-    ipfs
 
-    # Dev tools
+    # Git/CI
     gh
-    circleci-cli
-    gitlab-runner
-    niv
-    cachix
-    # cabal2nix
+    # circleci-cli
+    # gitlab-runner
+
+    # Haskell
     ghc
-    purescript
-    spago
+    # cabal2nix
+    # niv
     haskell-language-server
-    elmPackages.elm-language-server
-    elmPackages.elm-format
-    elmPackages.elm-test
-    rnix-lsp
-    cabal-install
-    nodejs
-    yarn
-    nixfmt
-    ormolu
     haskellPackages.fourmolu
     haskellPackages.cabal-fmt
     haskellPackages.hoogle
     # ihp-new
+
+    # PureScript
+    purescript
+    spago
+    nodePackages.purescript-language-server
+
+    # Elm
+    elmPackages.elm-language-server
+    elmPackages.elm-format
+    elmPackages.elm-test
+
+    # Nix
+    rnix-lsp
+    nix-tree
+    cabal-install
+    nixpkgs-fmt
+    nix-prefetch-git
+    arion
+    cachix
+
+    # JS
+    nodejs
+    yarn
     # nodePackages.node2nix
+
+    # Other dev tools
+    ipfs
     latexrun
+    graphviz
+    pandoc
+    librsvg
+    texlive.combined.scheme-small
   ];
 }
