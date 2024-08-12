@@ -1,8 +1,11 @@
 { pkgs, ... }:
+let
+  usersDir = if pkgs.stdenv.isDarwin then "/Users" else "/home";
+in
 
 {
   home.username = "gergo";
-  home.homeDirectory = "/Users/gergo";
+  home.homeDirectory = "${usersDir}/gergo";
 
   home.stateVersion = "24.05";
 
