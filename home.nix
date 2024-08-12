@@ -5,10 +5,11 @@ let
     name = "ihp-new";
     url = "https://ihp.digitallyinduced.com/ihp-new.tar.gz";
   };
+  usersDir = if pkgs.stdenv.isDarwin then "/Users" else "/home";
 in
 {
   home.username = "gergo";
-  home.homeDirectory = "/Users/gergo";
+  home.homeDirectory = "${usersDir}/gergo";
 
   home.stateVersion = "21.11";
 
@@ -223,7 +224,7 @@ in
     tree
     bash
     bash-completion
-    unrar
+    # unrar
     lastpass-cli
     tldr
     rates
@@ -276,7 +277,7 @@ in
     elmPackages.elm-test
 
     # Nix
-    rnix-lsp
+    # rnix-lsp
     nix-tree
     cabal-install
     nixpkgs-fmt
