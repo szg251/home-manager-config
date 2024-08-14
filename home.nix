@@ -132,7 +132,8 @@ in
           vim-rhubarb
 
           vim-commentary
-          (withConfig "vim-rooter")
+          # (withConfig "vim-rooter")
+          (withConfig "project-nvim")
           vim-repeat
           rnvimr
           neoformat
