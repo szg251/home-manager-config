@@ -33,7 +33,7 @@ vim.cmd [[syntax on]]
 vim.cmd [[colorscheme happy_hacking]]
 vim.o.background = "dark"
 vim.g.gruvbox_dark_contrast = "hard"
-vim.o.colorcolumn = 100
+vim.o.colorcolumn = "100"
 
 vim.g["WMGraphviz_output"] = "svg"
 

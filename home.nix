@@ -199,32 +199,47 @@ in
     }];
   };
 
-  programs.git = {
-    enable = true;
-    userName = "Szabo Gergely";
-    userEmail = "gege251@mailbox.org";
-    signing = {
-      signByDefault = true;
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8SiZHctbdcQhuteXYuO1Yw4XgM/fO3QDTYKyyA4UKj";
-    };
-    difftastic.enable = true;
-    extraConfig = {
-      init.defaultBranch = "main";
-      hub.protocol = "https";
-      github.user = "gege251";
-      color.ui = true;
-      pull.rebase = false;
-      merge.conflictstyle = "diff3";
-      credential.helper = "osxkeychain";
-      diff.algorithm = "patience";
-      protocol.version = "2";
-      core.commitGraph = true;
-      gc.writeCommitGraph = true;
-      push.default = "current";
-      gpg.format = "ssh";
-      gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
-    };
-  };
+  programs.git =
+    let
+      commonConfig =
+        {
+          enable = true;
+          userName = "Szabo Gergely";
+          userEmail = "gege251@mailbox.org";
+          signing.signByDefault = true;
+          difftastic.enable = true;
+          extraConfig = {
+            init.defaultBranch = "main";
+            hub.protocol = "https";
+            github.user = "szg251";
+            color.ui = true;
+            pull.rebase = false;
+            merge.conflictstyle = "diff3";
+            diff.algorithm = "patience";
+            protocol.version = "2";
+            core.commitGraph = true;
+            gc.writeCommitGraph = true;
+            push.default = "current";
+            gpg.format = "ssh";
+          };
+        };
+    in
+    if pkgs.stdenv.isDarwin then
+      commonConfig // {
+        signing = {
+          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8SiZHctbdcQhuteXYuO1Yw4XgM/fO3QDTYKyyA4UKj";
+        };
+        extraConfig = {
+          credential.helper = "osxkeychain";
+          gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+        };
+      } else
+      commonConfig // {
+        signing = {
+          key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgiQUve2sKgpGEnkoT8XpEulDMIs78k+sbpO3Vs5HIW";
+        };
+      };
+
 
   programs.direnv = {
     enable = true;
