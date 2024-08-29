@@ -65,7 +65,9 @@ lspconfig.rust_analyzer.setup {
   flags = lsp_flags,
   -- Server-specific settings...
   settings = {
-    ["rust-analyzer"] = {}
+    ["rust-analyzer"] = { check = {
+      command = "clippy"
+    } }
   }
 }
 lspconfig.taplo.setup {
