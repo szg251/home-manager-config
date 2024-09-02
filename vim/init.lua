@@ -36,6 +36,7 @@ vim.g.gruvbox_dark_contrast = "hard"
 vim.o.colorcolumn = "100"
 
 vim.g["WMGraphviz_output"] = "svg"
+-- vim.g["camelcasemotion_key"] = "<leader>"
 
 -- Key map
 local normal_mode_keys = {
@@ -89,6 +90,11 @@ local normal_mode_keys = {
   ["gr"] = vim.lsp.buf.references,
   ["<space>f"] = function() vim.lsp.buf.format { async = true } end,
 }
+
+vim.keymap.set({ "n", "o", "x" }, "w", "<Plug>CamelCaseMotion_w", { silent = true })
+vim.keymap.set({ "n", "o", "x" }, "b", "<Plug>CamelCaseMotion_b", { silent = true })
+vim.keymap.set({ "n", "o", "x" }, "e", "<Plug>CamelCaseMotion_e", { silent = true })
+vim.keymap.set({ "n", "o", "x" }, "ge", "<Plug>CamelCaseMotion_ge", { silent = true })
 
 local visual_mode_keys = {
   ["<leader>b"] = ":GBrowse<CR>",

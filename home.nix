@@ -107,6 +107,7 @@ in
           popfix # Dep of lsputils
           (withConfig "nvim-lsputils")
           (withConfig "inc-rename-nvim")
+          camelcasemotion
 
           # Autocompletion
           (withConfig "nvim-cmp")
