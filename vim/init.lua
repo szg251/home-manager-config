@@ -40,7 +40,7 @@ vim.g["WMGraphviz_output"] = "svg"
 
 -- Key map
 local normal_mode_keys = {
-  ["<leader>s"] = ":w<CR>",
+  ["<D-s>"] = ":w<CR>",
   ["<leader>q"] = ":q<CR>",
   ["<leader>h"] = ":noh<CR>",
   ["<leader>mg"] = ":GraphvizShow<CR>",
@@ -95,6 +95,10 @@ vim.keymap.set({ "n", "o", "x" }, "w", "<Plug>CamelCaseMotion_w", { silent = tru
 vim.keymap.set({ "n", "o", "x" }, "b", "<Plug>CamelCaseMotion_b", { silent = true })
 vim.keymap.set({ "n", "o", "x" }, "e", "<Plug>CamelCaseMotion_e", { silent = true })
 vim.keymap.set({ "n", "o", "x" }, "ge", "<Plug>CamelCaseMotion_ge", { silent = true })
+
+vim.keymap.set({ "o", "x" }, "iw", "<Plug>CamelCaseMotion_iw", { silent = true })
+vim.keymap.set({ "o", "x" }, "ib", "<Plug>CamelCaseMotion_ib", { silent = true })
+vim.keymap.set({ "o", "x" }, "ie", "<Plug>CamelCaseMotion_ie", { silent = true })
 
 local visual_mode_keys = {
   ["<leader>b"] = ":GBrowse<CR>",
