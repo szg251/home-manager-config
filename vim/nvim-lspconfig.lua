@@ -66,7 +66,8 @@ lspconfig.rust_analyzer.setup {
   -- Server-specific settings...
   settings = {
     ["rust-analyzer"] = { check = {
-      command = "clippy"
+      command = "clippy",
+      features = "all"
     } }
   }
 }

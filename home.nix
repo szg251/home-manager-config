@@ -270,6 +270,8 @@ in
     procs
     bottom
     starship
+    bat
+    devenv
 
     # File management
     silver-searcher
@@ -302,9 +304,11 @@ in
     # ihp-new
 
     # PureScript
-    purescript
+    # purescript
     # spago
-    nodePackages.purescript-language-server
+    # nodePackages.purescript-language-server
+
+
 
     # Rust
     cargo
@@ -314,9 +318,9 @@ in
     cargo-expand
 
     # Elm
-    elmPackages.elm-language-server
-    elmPackages.elm-format
-    elmPackages.elm-test
+    # elmPackages.elm-language-server
+    # elmPackages.elm-format
+    # elmPackages.elm-test
 
     # Nix
     nix-tree
@@ -328,13 +332,14 @@ in
     nil # Nix language server
 
     # Dhall
-    dhall
-    dhall-lsp-server
+    # dhall
+    # dhall-lsp-server
 
     # JS
     nodejs
     # yarn
     nodePackages.typescript-language-server
+    nodePackages.eslint
     # nodePackages.node2nix
 
     # lua
