@@ -44,7 +44,8 @@ local normal_mode_keys = {
   ["<leader>q"] = ":q<CR>",
   ["<leader>h"] = ":noh<CR>",
   ["<leader>mg"] = ":GraphvizShow<CR>",
-  ["<leader>e"] = ":NvimTreeToggle<CR>",
+  ["<S-D-e>"] = ":NvimTreeToggle<CR>",
+  ["<S-D-b>"] = ":Outline<CR>",
   -- Coq
   ["<leader>cn"] = ":CoqNext<CR>",
   ["<leader>ce"] = ":CoqUndo<CR>",

@@ -99,6 +99,7 @@ in
           (withConfig "nvim-autopairs")
           nvim-web-devicons
           (withConfig "nvim-tree-lua")
+          (withConfig "outline-nvim")
           (withConfig "nvim-lspconfig")
           lsp-status-nvim
           litee-nvim # GH-nvim dependency
@@ -330,6 +331,7 @@ in
     nix-prefetch-git
     cachix
     nil # Nix language server
+    nixd
 
     # Dhall
     # dhall
@@ -339,8 +341,9 @@ in
     nodejs
     # yarn
     nodePackages.typescript-language-server
-    nodePackages.eslint
+    # nodePackages.eslint
     # nodePackages.node2nix
+    nodePackages.prettier
 
     # lua
     lua
