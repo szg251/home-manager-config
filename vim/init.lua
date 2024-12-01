@@ -46,9 +46,6 @@ local normal_mode_keys = {
   ["<leader>mg"] = ":GraphvizShow<CR>",
   ["<S-D-e>"] = ":NvimTreeToggle<CR>",
   ["<S-D-b>"] = ":Outline<CR>",
-  -- Coq
-  ["<leader>cn"] = ":CoqNext<CR>",
-  ["<leader>ce"] = ":CoqUndo<CR>",
   -- GitGutter
   ["ghs"] = "<Plug>(GitGutterStageHunk)",
   ["ghu"] = "<Plug>(GitGutterUndoHunk)",
@@ -66,8 +63,8 @@ local normal_mode_keys = {
   --Markdown
   ["<leader>mp"] = ":MarkdownPreviewToggle<CR>",
   -- Telescope
-  ["<leader>ff"] = require('telescope.builtin').find_files,
-  ["<leader>fg"] = require('telescope.builtin').live_grep,
+  ["<D-p>"] = require('telescope.builtin').find_files,
+  ["<S-D-f>"] = require('telescope.builtin').live_grep,
   ["<leader>fb"] = require('telescope.builtin').buffers,
   ["<leader>fh"] = require('telescope.builtin').help_tags,
   -- LSP
