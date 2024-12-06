@@ -7,7 +7,7 @@ in
   home.username = "gergo";
   home.homeDirectory = "${usersDir}/gergo";
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
 
@@ -327,7 +327,8 @@ in
     nix-tree
     nix-melt
     cabal-install
-    nixpkgs-fmt
+    # nixpkgs-fmt
+    nixfmt-rfc-style
     nix-prefetch-git
     cachix
     nil # Nix language server
@@ -364,6 +365,5 @@ in
     texlive.combined.scheme-small
     protobuf
     buf
-    buf-language-server
   ];
 }

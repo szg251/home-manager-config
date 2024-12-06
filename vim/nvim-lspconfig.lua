@@ -54,7 +54,7 @@ local capabilities = vim.tbl_extend("keep",
 lsp_status.register_progress()
 
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = lsp_flags,
@@ -138,7 +138,7 @@ lspconfig.postgres_lsp.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
-lspconfig.bufls.setup {
+lspconfig.buf_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
