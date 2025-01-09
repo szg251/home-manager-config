@@ -124,6 +124,7 @@ in
           unicode-vim
           telescope-nvim
           telescope-fzf-native-nvim
+          trouble-nvim
           plenary-nvim
 
           nvim-terminal-lua
@@ -181,26 +182,26 @@ in
         ];
     };
 
-  programs.tmux = {
-    enable = true;
-    prefix = "C-b";
-    keyMode = "vi";
-    terminal = "screen-256color";
-    escapeTime = 10;
-    baseIndex = 1;
-    historyLimit = 500000;
-    extraConfig = builtins.readFile ./tmuxConfig.conf;
-    plugins = [{
-      plugin = pkgs.tmuxPlugins.battery;
-      extraConfig = ''
-        set -g @batt_icon_status_charged '+'
-        set -g @batt_icon_status_charging '+'
-        set -g @batt_icon_status_attached '±'
-        set -g @batt_icon_status_discharging '-'
-        set-option -g status-right "#{battery_percentage} #{battery_icon_status} #{battery_icon_charge}  %a %d %b %H:%M "
-      '';
-    }];
-  };
+  # programs.tmux = {
+  #   enable = true;
+  #   prefix = "C-b";
+  #   keyMode = "vi";
+  #   terminal = "screen-256color";
+  #   escapeTime = 10;
+  #   baseIndex = 1;
+  #   historyLimit = 500000;
+  #   extraConfig = builtins.readFile ./tmuxConfig.conf;
+  #   plugins = [{
+  #     plugin = pkgs.tmuxPlugins.battery;
+  #     extraConfig = ''
+  #       set -g @batt_icon_status_charged '+'
+  #       set -g @batt_icon_status_charging '+'
+  #       set -g @batt_icon_status_attached '±'
+  #       set -g @batt_icon_status_discharging '-'
+  #       set-option -g status-right "#{battery_percentage} #{battery_icon_status} #{battery_icon_charge}  %a %d %b %H:%M "
+  #     '';
+  #   }];
+  # };
 
   programs.git =
     let
@@ -223,6 +224,7 @@ in
             core.commitGraph = true;
             gc.writeCommitGraph = true;
             push.default = "current";
+            push.autoSetupRemote = true;
             gpg.format = "ssh";
           };
         };
@@ -256,6 +258,7 @@ in
     tree
     bash
     bash-completion
+    lima
     mosh
     # unrar
     # lazygit
