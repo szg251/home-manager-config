@@ -154,6 +154,7 @@ in
               plugins.tree-sitter-nix
               plugins.tree-sitter-dot
               plugins.tree-sitter-rust
+              plugins.tree-sitter-python
               plugins.tree-sitter-typescript
               plugins.tree-sitter-javascript
               plugins.tree-sitter-dockerfile
@@ -312,7 +313,9 @@ in
     # spago
     # nodePackages.purescript-language-server
 
-
+    # Python
+    pyright
+    python313Packages.autopep8
 
     # Rust
     cargo

@@ -84,7 +84,7 @@ local normal_mode_keys = {
   end,
   ["<space>D"] = vim.lsp.buf.type_definition,
   ["<space>rn"] = vim.lsp.buf.rename,
-  ["<space>ca"] = vim.lsp.buf.code_action,
+  ["g."] = vim.lsp.buf.code_action,
   ["gr"] = vim.lsp.buf.references,
   ["<space>f"] = function() vim.lsp.buf.format { async = true } end,
 }
