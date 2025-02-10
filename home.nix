@@ -323,6 +323,7 @@ in
     rustc
     taplo
     cargo-expand
+    cargo-edit
 
     # Elm
     # elmPackages.elm-language-server
