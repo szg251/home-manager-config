@@ -94,9 +94,9 @@ vim.keymap.set({ "n", "o", "x" }, "b", "<Plug>CamelCaseMotion_b", { silent = tru
 vim.keymap.set({ "n", "o", "x" }, "e", "<Plug>CamelCaseMotion_e", { silent = true })
 vim.keymap.set({ "n", "o", "x" }, "ge", "<Plug>CamelCaseMotion_ge", { silent = true })
 
-vim.keymap.set({ "o", "x" }, "iw", "<Plug>CamelCaseMotion_iw", { silent = true })
-vim.keymap.set({ "o", "x" }, "ib", "<Plug>CamelCaseMotion_ib", { silent = true })
-vim.keymap.set({ "o", "x" }, "ie", "<Plug>CamelCaseMotion_ie", { silent = true })
+-- vim.keymap.set({ "o", "x" }, "iw", "<Plug>CamelCaseMotion_iw", { silent = true })
+-- vim.keymap.set({ "o", "x" }, "ib", "<Plug>CamelCaseMotion_ib", { silent = true })
+-- vim.keymap.set({ "o", "x" }, "ie", "<Plug>CamelCaseMotion_ie", { silent = true })
 
 local visual_mode_keys = {
   ["<leader>b"] = ":GBrowse<CR>",
@@ -130,13 +130,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.dot",
   command = "GraphvizCompile",
   group = graphvizFormat,
-})
-
-local cabalFormat = vim.api.nvim_create_augroup("cabalFormat", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.cabal" },
-  command = "Neoformat",
-  group = cabalFormat
 })
 
 local markdownSpellcheck = vim.api.nvim_create_augroup("markdownSpellcheck", { clear = true })

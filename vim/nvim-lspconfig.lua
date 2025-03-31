@@ -81,7 +81,9 @@ lspconfig.hls.setup {
   flags = lsp_flags,
   settings = {
     haskell = {
-      formattingProvider = "fourmolu"
+      formattingProvider = "fourmolu",
+      cabalFormattingProvider = "cabal-fmt"
+
     }
   }
 }
@@ -101,9 +103,14 @@ lspconfig.nil_ls.setup {
   settings = {
     ['nil'] = {
       formatting = {
-        command = { "nixpkgs-fmt" },
+        command = { "nixfmt" },
       },
-    },
+      nix = {
+        flake = {
+          autoArchive = true,
+        },
+      }
+    }
   }
 }
 lspconfig.dhall_lsp_server.setup {
@@ -145,4 +152,13 @@ lspconfig.buf_ls.setup {
 lspconfig.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+}
+lspconfig.texlab.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+lspconfig.sourcekit.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+
 }

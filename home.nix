@@ -21,7 +21,14 @@ in
       ignoreAllDups = true;
       ignoreDups = true;
       ignoreSpace = true;
-      ignorePatterns = [ "ls*" "cd*" "exa*" "pwd*" "exit*" "cd*" ];
+      ignorePatterns = [
+        "ls*"
+        "cd*"
+        "exa*"
+        "pwd*"
+        "exit*"
+        "cd*"
+      ];
       share = true;
       save = 10000000;
       size = 10000000;
@@ -36,8 +43,7 @@ in
 
     shellAliases = {
       vimwiki = "nvim -c :VimwikiIndex";
-      gitclean = ''
-        git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'';
+      gitclean = ''git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'';
       darwin-update = "$HOME/.config/nix-darwin/darwin-update.sh";
       tableplus = ''SSH_AUTH_SOCK="~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock" open -a /Applications/TablePlus.app'';
       kitty = "/Applications/kitty.app/Contents/MacOS/kitty";
@@ -73,81 +79,80 @@ in
     options = [ "--cmd cd" ];
   };
 
-  programs.neovim =
-    {
-      enable = true;
-      vimAlias = true;
-      extraConfig = builtins.readFile ./vim/init.vim;
-      extraLuaConfig = builtins.readFile ./vim/init.lua;
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    extraConfig = builtins.readFile ./vim/init.vim;
+    extraLuaConfig = builtins.readFile ./vim/init.lua;
 
-      plugins =
-        let
-          withConfig = name:
-            {
-              plugin = pkgs.vimPlugins.${name};
-              config = builtins.readFile ./vim/${name}.lua;
-              type = "lua";
-            };
+    plugins =
+      let
+        withConfig = name: {
+          plugin = pkgs.vimPlugins.${name};
+          config = builtins.readFile ./vim/${name}.lua;
+          type = "lua";
+        };
 
-        in
-        with pkgs.vimPlugins;
-        [
-          # General
-          (withConfig "vimwiki")
-          matchit-zip
-          # delimitMate
-          (withConfig "nvim-autopairs")
-          nvim-web-devicons
-          (withConfig "nvim-tree-lua")
-          (withConfig "outline-nvim")
-          (withConfig "nvim-lspconfig")
-          lsp-status-nvim
-          litee-nvim # GH-nvim dependency
-          lsp-format-nvim
-          # direnv-vim
-          popfix # Dep of lsputils
-          (withConfig "nvim-lsputils")
-          (withConfig "inc-rename-nvim")
-          camelcasemotion
+      in
+      with pkgs.vimPlugins;
+      [
+        # General
+        (withConfig "vimwiki")
+        matchit-zip
+        # delimitMate
+        (withConfig "nvim-autopairs")
+        nvim-web-devicons
+        (withConfig "nvim-tree-lua")
+        (withConfig "outline-nvim")
+        (withConfig "nvim-lspconfig")
+        lsp-status-nvim
+        litee-nvim # GH-nvim dependency
+        lsp-format-nvim
+        # direnv-vim
+        popfix # Dep of lsputils
+        (withConfig "nvim-lsputils")
+        (withConfig "inc-rename-nvim")
+        camelcasemotion
 
-          # Autocompletion
-          (withConfig "nvim-cmp")
-          cmp-buffer
-          cmp-path
-          cmp-nvim-lsp
-          cmp-nvim-lua
+        # Autocompletion
+        (withConfig "nvim-cmp")
+        cmp-buffer
+        cmp-path
+        cmp-nvim-lsp
+        cmp-nvim-lua
 
-          vim-surround
-          tabular
-          vim-unimpaired
-          ReplaceWithRegister
-          unicode-vim
-          telescope-nvim
-          telescope-fzf-native-nvim
-          trouble-nvim
-          plenary-nvim
+        vim-surround
+        tabular
+        vim-unimpaired
+        ReplaceWithRegister
+        unicode-vim
+        (withConfig "telescope-nvim")
+        telescope-fzf-native-nvim
+        telescope-ui-select-nvim
+        trouble-nvim
+        plenary-nvim
 
-          nvim-terminal-lua
-          # vim-gitgutter
-          (withConfig "gitsigns-nvim")
-          conflict-marker-vim
-          vim-fugitive
-          vim-rhubarb
+        nvim-terminal-lua
+        # vim-gitgutter
+        (withConfig "gitsigns-nvim")
+        conflict-marker-vim
+        vim-fugitive
+        vim-rhubarb
 
-          vim-commentary
-          # (withConfig "vim-rooter")
-          (withConfig "project-nvim")
-          vim-repeat
-          rnvimr
-          neoformat
+        vim-commentary
+        # (withConfig "vim-rooter")
+        (withConfig "project-nvim")
+        vim-repeat
+        rnvimr
 
-          # Looks
-          awesome-vim-colorschemes
-          vim-airline
+        # Looks
+        awesome-vim-colorschemes
+        vim-airline
 
-          # Language support
-          {
-            plugin = (nvim-treesitter.withPlugins (plugins: [
+        # Language support
+        {
+          plugin = (
+            nvim-treesitter.withPlugins (plugins: [
               plugins.tree-sitter-haskell
               plugins.tree-sitter-c
               plugins.tree-sitter-cpp
@@ -162,26 +167,27 @@ in
               plugins.tree-sitter-elm
               plugins.tree-sitter-lua
               plugins.tree-sitter-sql
-            ]));
-            config = builtins.readFile ./vim/nvim-treesitter.lua;
-            type = "lua";
-          }
-          # copilot-vim
-          Coqtail
-          vim-nix
-          typescript-vim
-          purescript-vim
-          (withConfig "purescript-vim")
-          dhall-vim
-          wmgraphviz-vim
-          vim-solidity
-          vim-mustache-handlebars
-          # (withConfig "mkdx")
-          markdown-preview-nvim
-          vim-markdown
-          vimtex
-        ];
-    };
+            ])
+          );
+          config = builtins.readFile ./vim/nvim-treesitter.lua;
+          type = "lua";
+        }
+        # copilot-vim
+        Coqtail
+        vim-nix
+        typescript-vim
+        purescript-vim
+        (withConfig "purescript-vim")
+        dhall-vim
+        wmgraphviz-vim
+        vim-solidity
+        vim-mustache-handlebars
+        # (withConfig "mkdx")
+        markdown-preview-nvim
+        vim-markdown
+        vimtex
+      ];
+  };
 
   # programs.tmux = {
   #   enable = true;
@@ -206,32 +212,32 @@ in
 
   programs.git =
     let
-      commonConfig =
-        {
-          enable = true;
-          userName = "Szabo Gergely";
-          userEmail = "gege251@mailbox.org";
-          signing.signByDefault = true;
-          difftastic.enable = true;
-          extraConfig = {
-            init.defaultBranch = "main";
-            hub.protocol = "https";
-            github.user = "szg251";
-            color.ui = true;
-            pull.rebase = false;
-            merge.conflictstyle = "diff3";
-            diff.algorithm = "patience";
-            protocol.version = "2";
-            core.commitGraph = true;
-            gc.writeCommitGraph = true;
-            push.default = "current";
-            push.autoSetupRemote = true;
-            gpg.format = "ssh";
-          };
+      commonConfig = {
+        enable = true;
+        userName = "Szabo Gergely";
+        userEmail = "gege251@mailbox.org";
+        signing.signByDefault = true;
+        difftastic.enable = true;
+        extraConfig = {
+          init.defaultBranch = "main";
+          hub.protocol = "https";
+          github.user = "szg251";
+          color.ui = true;
+          pull.rebase = false;
+          merge.conflictstyle = "diff3";
+          diff.algorithm = "patience";
+          protocol.version = "2";
+          core.commitGraph = true;
+          gc.writeCommitGraph = true;
+          push.default = "current";
+          push.autoSetupRemote = true;
+          gpg.format = "ssh";
         };
+      };
     in
     if pkgs.stdenv.isDarwin then
-      commonConfig // {
+      commonConfig
+      // {
         signing = {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8SiZHctbdcQhuteXYuO1Yw4XgM/fO3QDTYKyyA4UKj";
         };
@@ -239,13 +245,14 @@ in
           credential.helper = "osxkeychain";
           gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
         };
-      } else
-      commonConfig // {
+      }
+    else
+      commonConfig
+      // {
         signing = {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgiQUve2sKgpGEnkoT8XpEulDMIs78k+sbpO3Vs5HIW";
         };
       };
-
 
   programs.direnv = {
     enable = true;
@@ -302,7 +309,7 @@ in
     # Haskell
     ghc
     # cabal2nix
-    haskell-language-server
+    (haskell-language-server.override { supportedGhcVersions = [ "94" ]; })
     haskellPackages.fourmolu
     haskellPackages.cabal-fmt
     # haskellPackages.hoogle
@@ -324,6 +331,7 @@ in
     taplo
     cargo-expand
     cargo-edit
+    cargo-generate
 
     # Elm
     # elmPackages.elm-language-server
@@ -333,8 +341,8 @@ in
     # Nix
     nix-tree
     nix-melt
+    nix-du
     cabal-install
-    # nixpkgs-fmt
     nixfmt-rfc-style
     nix-prefetch-git
     cachix
@@ -363,6 +371,9 @@ in
     postgres-lsp
     pgformatter
 
+    # Swift
+    sourcekit-lsp
+
     # Other dev tools
     # ipfs
     latexrun
@@ -370,6 +381,7 @@ in
     pandoc
     librsvg
     texlive.combined.scheme-small
+    texlab
     protobuf
     buf
   ];
