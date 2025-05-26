@@ -87,6 +87,16 @@ local normal_mode_keys = {
   ["g."] = vim.lsp.buf.code_action,
   ["gr"] = vim.lsp.buf.references,
   ["<space>f"] = function() vim.lsp.buf.format { async = true } end,
+  ["gR"] = "<Plug>ReplaceWithRegisterOperator",
+  ["gRr"] = "<Plug>ReplaceWithRegisterLine",
+}
+
+local visual_and_select_mode_keys = {
+  ["<leader>b"] = ":GBrowse<CR>",
+}
+
+local visual_mode_keys = {
+  ["gR"] = "<Plug>ReplaceWithRegisterVisual",
 }
 
 vim.keymap.set({ "n", "o", "x" }, "w", "<Plug>CamelCaseMotion_w", { silent = true })
@@ -94,13 +104,14 @@ vim.keymap.set({ "n", "o", "x" }, "b", "<Plug>CamelCaseMotion_b", { silent = tru
 vim.keymap.set({ "n", "o", "x" }, "e", "<Plug>CamelCaseMotion_e", { silent = true })
 vim.keymap.set({ "n", "o", "x" }, "ge", "<Plug>CamelCaseMotion_ge", { silent = true })
 
+
+-- nmap <Leader>r  <Plug>ReplaceWithRegisterOperator
+-- nmap <Leader>rr <Plug>ReplaceWithRegisterLine
+-- xmap <Leader>r  <Plug>ReplaceWithRegisterVisual
 -- vim.keymap.set({ "o", "x" }, "iw", "<Plug>CamelCaseMotion_iw", { silent = true })
 -- vim.keymap.set({ "o", "x" }, "ib", "<Plug>CamelCaseMotion_ib", { silent = true })
 -- vim.keymap.set({ "o", "x" }, "ie", "<Plug>CamelCaseMotion_ie", { silent = true })
 
-local visual_mode_keys = {
-  ["<leader>b"] = ":GBrowse<CR>",
-}
 vim.keymap.set("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
@@ -116,11 +127,15 @@ do
   vim.keymap.set("n", k, c, { noremap = true })
 end
 
-for k, c in pairs(visual_mode_keys)
+for k, c in pairs(visual_and_select_mode_keys)
 do
   vim.keymap.set("v", k, c, { noremap = true })
 end
 
+for k, c in pairs(visual_mode_keys)
+do
+  vim.keymap.set("x", k, c, { noremap = true })
+end
 
 -----------------
 -- Auto commands
