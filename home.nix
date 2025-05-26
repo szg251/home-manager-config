@@ -7,7 +7,7 @@ in
   home.username = "gergo";
   home.homeDirectory = "${usersDir}/gergo";
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
 
   programs.home-manager.enable = true;
 
@@ -57,7 +57,7 @@ in
       PATH = "$HOME/bin:/usr/local/bin:$HOME/mutable_node_modules/bin:$PATH";
       DISABLE_AUTO_TITLE = "true";
     };
-    initExtra = ''
+    initContent = ''
       test -f ~/.nix-profile/etc/profile.d/nix.sh && source ~/.nix-profile/etc/profile.d/nix.sh
       test -f /etc/static/zshrc && source /etc/static/zshrc
       test -f ~/.config/op/plugins.sh && source ~/.config/op/plugins.sh
@@ -113,6 +113,7 @@ in
         (withConfig "nvim-lsputils")
         (withConfig "inc-rename-nvim")
         camelcasemotion
+        vim-wakatime
 
         # Autocompletion
         (withConfig "nvim-cmp")
@@ -309,8 +310,8 @@ in
     # Haskell
     ghc
     # cabal2nix
-    (haskell-language-server.override { supportedGhcVersions = [ "94" ]; })
-    haskellPackages.fourmolu
+    # (haskell-language-server.override { supportedGhcVersions = [ "94" ]; })
+    # haskellPackages.fourmolu
     haskellPackages.cabal-fmt
     # haskellPackages.hoogle
     # ihp-new
