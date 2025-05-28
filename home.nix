@@ -311,7 +311,8 @@ in
     ghc
     # cabal2nix
     # (haskell-language-server.override { supportedGhcVersions = [ "94" ]; })
-    # haskellPackages.fourmolu
+    haskell-language-server
+    fourmolu
     haskellPackages.cabal-fmt
     # haskellPackages.hoogle
     # ihp-new
