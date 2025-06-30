@@ -113,6 +113,10 @@ lspconfig.nil_ls.setup {
     }
   }
 }
+lspconfig.nixd.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 lspconfig.dhall_lsp_server.setup {
   on_attach = on_attach,
   capabilities = capabilities,

@@ -242,7 +242,7 @@ in
         signing = {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8SiZHctbdcQhuteXYuO1Yw4XgM/fO3QDTYKyyA4UKj";
         };
-        extraConfig = {
+        extraConfig = commonConfig.extraConfig // {
           credential.helper = "osxkeychain";
           gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
         };
@@ -349,7 +349,7 @@ in
     nix-prefetch-git
     cachix
     nil # Nix language server
-    nixd
+    nixd # Nix language server
 
     # Dhall
     # dhall
