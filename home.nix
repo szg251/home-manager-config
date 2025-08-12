@@ -113,7 +113,6 @@ in
         (withConfig "nvim-lsputils")
         (withConfig "inc-rename-nvim")
         camelcasemotion
-        vim-wakatime
 
         # Autocompletion
         (withConfig "nvim-cmp")
