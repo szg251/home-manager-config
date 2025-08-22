@@ -352,7 +352,7 @@ in
 
     # Dhall
     # dhall
-    # dhall-lsp-server
+    dhall-lsp-server
 
     # JS
     nodejs
