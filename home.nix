@@ -138,6 +138,7 @@ in
         conflict-marker-vim
         vim-fugitive
         vim-rhubarb
+        # gh-nvim # only in unstable atm
 
         vim-commentary
         # (withConfig "vim-rooter")
@@ -309,8 +310,8 @@ in
     # Haskell
     ghc
     # cabal2nix
-    # (haskell-language-server.override { supportedGhcVersions = [ "94" ]; })
-    haskell-language-server
+    (haskell-language-server.override { supportedGhcVersions = [ "912" ]; })
+    # haskell-language-server
     fourmolu
     haskellPackages.cabal-fmt
     # haskellPackages.hoogle
