@@ -168,6 +168,7 @@ in
               plugins.tree-sitter-elm
               plugins.tree-sitter-lua
               plugins.tree-sitter-sql
+              plugins.tree-sitter-go
             ])
           );
           config = builtins.readFile ./vim/nvim-treesitter.lua;
@@ -362,6 +363,9 @@ in
     # nodePackages.eslint
     # nodePackages.node2nix
     nodePackages.prettier
+
+    # Golang
+    gopls
 
     # lua
     lua
