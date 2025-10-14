@@ -47,6 +47,7 @@ in
       darwin-update = "$HOME/.config/nix-darwin/darwin-update.sh";
       tableplus = ''SSH_AUTH_SOCK="~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock" open -a /Applications/TablePlus.app'';
       kitty = "/Applications/kitty.app/Contents/MacOS/kitty";
+      ghostty = "/Applications/Ghostty.app/Contents/MacOS/ghostty";
       kitten = "/Applications/kitty.app/Contents/MacOS/kitten";
     };
     sessionVariables = rec {
@@ -82,7 +83,6 @@ in
   programs.neovim = {
     enable = true;
     vimAlias = true;
-    extraConfig = builtins.readFile ./vim/init.vim;
     extraLuaConfig = builtins.readFile ./vim/init.lua;
 
     plugins =
@@ -105,14 +105,12 @@ in
         (withConfig "nvim-tree-lua")
         (withConfig "outline-nvim")
         (withConfig "nvim-lspconfig")
-        lsp-status-nvim
         litee-nvim # GH-nvim dependency
         lsp-format-nvim
         # direnv-vim
-        popfix # Dep of lsputils
-        (withConfig "nvim-lsputils")
         (withConfig "inc-rename-nvim")
         camelcasemotion
+        nvim-treesitter-context
 
         # Autocompletion
         (withConfig "nvim-cmp")
@@ -309,6 +307,7 @@ in
     # gitlab-runner
 
     # Haskell
+    pretty-simple
     ghc
     # cabal2nix
     (haskell-language-server.override { supportedGhcVersions = [ "912" ]; })

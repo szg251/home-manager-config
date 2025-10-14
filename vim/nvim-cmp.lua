@@ -30,7 +30,7 @@ local kind_icons = {
 
 cmp.setup {
   formatting = {
-    fields = { "kind", "abbr", "menu"},
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({
@@ -44,19 +44,19 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = "buffer"},
+    { name = "buffer" },
     { name = "path" },
     { name = "nvim_lua" },
   },
   window = {
-    documentation = cmp.config.window.bordered();
+    documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),   -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
 
 }

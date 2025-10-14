@@ -1,6 +1,6 @@
 require("gitsigns").setup {
   signs = {
-    change = {text = "║" }
+    change = { text = "║" }
   },
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns

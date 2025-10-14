@@ -69,8 +69,8 @@ local normal_mode_keys = {
   ["<leader>fh"] = require('telescope.builtin').help_tags,
   -- LSP
   ["<space>e"] = vim.diagnostic.open_float,
-  ["[d"] = vim.diagnostic.goto_prev,
-  ["]d"] = vim.diagnostic.goto_next,
+  ["[d"] = function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  ["]d"] = function() vim.diagnostic.jump({ count = 1, float = true }) end,
   ["<space>q"] = vim.diagnostic.setloclist,
   ["gD"] = vim.lsp.buf.declaration,
   ["gd"] = vim.lsp.buf.definition,

@@ -1,4 +1,3 @@
-
 vim.g["mkdx#settings"] = {
   highlight = { enable = 1 },
   enter = { shift = 1 },
