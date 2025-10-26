@@ -1,3 +1,5 @@
+require("lsp-format").setup {}
+
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
@@ -46,12 +48,13 @@ vim.lsp.enable({
   "marksman",
   "jsonls",
   "html",
-  -- "aiken",
+  "aiken",
   "postgres_lsp",
   "buf_ls",
   "pyright",
   "texlab",
   "gopls",
+  "sourcekit",
 })
 
 

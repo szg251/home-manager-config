@@ -172,6 +172,7 @@ in
           config = builtins.readFile ./vim/nvim-treesitter.lua;
           type = "lua";
         }
+        aiken-vim
         # copilot-vim
         Coqtail
         vim-nix
