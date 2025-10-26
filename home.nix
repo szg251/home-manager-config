@@ -173,6 +173,7 @@ in
           type = "lua";
         }
         aiken-vim
+        tiny-inline-diagnostic-nvim
         # copilot-vim
         Coqtail
         vim-nix
