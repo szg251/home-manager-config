@@ -35,7 +35,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 vim.lsp.enable({
   "ts_ls",
-  "ts_ls",
   "rust_analyzer",
   "taplo",
   "hls",
@@ -45,6 +44,8 @@ vim.lsp.enable({
   "dhall_lsp_server",
   "lua_ls",
   "elmls",
+  "solidity_ls_nomicfoundation",
+  "denols",
   "marksman",
   "jsonls",
   "html",
@@ -57,6 +58,16 @@ vim.lsp.enable({
   "sourcekit",
 })
 
+vim.lsp.config("ts_ls", {
+  root_dir = function(filename)
+    local util = require 'lspconfig.util'
+    if util.root_pattern("deno.json")(filename) then
+      return nil -- Disable ts_ls inside Deno projects
+    end
+    return util.root_pattern("package.json", "tsconfig.json")(filename)
+  end,
+
+});
 
 
 

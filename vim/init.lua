@@ -27,6 +27,7 @@ vim.o.title = true
 vim.o.titlestring = "vim%=%<%F%m%r"
 vim.o.titlelen = 70
 vim.opt.shortmess:append("c")
+vim.o.conceallevel = 2
 
 -- Theme
 vim.cmd [[syntax on]]
@@ -46,6 +47,7 @@ local normal_mode_keys = {
   ["<leader>mg"] = ":GraphvizShow<CR>",
   ["<S-D-e>"] = ":NvimTreeToggle<CR>",
   ["<S-D-b>"] = ":Outline<CR>",
+  ["<S-D-o>"] = ":Obsidian<CR>",
   -- GitGutter
   ["ghs"] = "<Plug>(GitGutterStageHunk)",
   ["ghu"] = "<Plug>(GitGutterUndoHunk)",

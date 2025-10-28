@@ -42,7 +42,8 @@ in
     };
 
     shellAliases = {
-      vimwiki = "nvim -c :VimwikiIndex";
+      # vimwiki = "nvim -c :VimwikiIndex";
+      obsidian = "nvim -c :ObsidianQuickSwitch";
       gitclean = ''git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'';
       darwin-update = "$HOME/.config/nix-darwin/darwin-update.sh";
       tableplus = ''SSH_AUTH_SOCK="~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock" open -a /Applications/TablePlus.app'';
@@ -97,7 +98,8 @@ in
       with pkgs.vimPlugins;
       [
         # General
-        (withConfig "vimwiki")
+        # (withConfig "vimwiki")
+        (withConfig "obsidian-nvim")
         matchit-zip
         # delimitMate
         (withConfig "nvim-autopairs")
@@ -167,6 +169,7 @@ in
               plugins.tree-sitter-lua
               plugins.tree-sitter-sql
               plugins.tree-sitter-go
+              plugins.tree-sitter-solidity
             ])
           );
           config = builtins.readFile ./vim/nvim-treesitter.lua;
@@ -182,7 +185,6 @@ in
         (withConfig "purescript-vim")
         dhall-vim
         wmgraphviz-vim
-        vim-solidity
         vim-mustache-handlebars
         # (withConfig "mkdx")
         markdown-preview-nvim
