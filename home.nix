@@ -113,6 +113,7 @@ in
         (withConfig "inc-rename-nvim")
         camelcasemotion
         nvim-treesitter-context
+        (withConfig "harpoon2")
 
         # Autocompletion
         (withConfig "nvim-cmp")
