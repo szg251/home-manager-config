@@ -35,6 +35,7 @@ vim.cmd [[colorscheme happy_hacking]]
 vim.o.background = "dark"
 vim.g.gruvbox_dark_contrast = "hard"
 vim.o.colorcolumn = "100"
+vim.o.textwidth = 100
 
 vim.g["WMGraphviz_output"] = "svg"
 -- vim.g["camelcasemotion_key"] = "<leader>"

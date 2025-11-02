@@ -58,16 +58,16 @@ vim.lsp.enable({
   "sourcekit",
 })
 
-vim.lsp.config("ts_ls", {
-  root_dir = function(filename)
-    local util = require 'lspconfig.util'
-    if util.root_pattern("deno.json")(filename) then
-      return nil -- Disable ts_ls inside Deno projects
-    end
-    return util.root_pattern("package.json", "tsconfig.json")(filename)
-  end,
+-- vim.lsp.config("ts_ls", {
+--   root_dir = function(filename)
+--     local util = require 'lspconfig.util'
+--     if util.root_pattern("deno.json")(filename) then
+--       return nil -- Disable ts_ls inside Deno projects
+--     end
+--     return util.root_pattern("package.json", "tsconfig.json")(filename)
+--   end,
 
-});
+-- });
 
 
 
