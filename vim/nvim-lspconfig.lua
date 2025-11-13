@@ -56,6 +56,7 @@ vim.lsp.enable({
   "texlab",
   "gopls",
   "sourcekit",
+  "daml"
 })
 
 -- vim.lsp.config("ts_ls", {
@@ -70,6 +71,11 @@ vim.lsp.enable({
 -- });
 
 
+vim.lsp.config("daml", {
+  cmd = { "daml", "damlc", "ide", "--RTS", "+RTS", "-M6G", "-N" },
+  filetypes = { 'daml' },
+  root_markers = { "daml.yaml" }
+})
 
 
 vim.lsp.config("rust_analyzer", {
