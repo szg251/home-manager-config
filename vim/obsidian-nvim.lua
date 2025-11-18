@@ -12,4 +12,5 @@ require("obsidian").setup({
     folder = "diary",
   },
 
+  legacy_commands = false,
 })

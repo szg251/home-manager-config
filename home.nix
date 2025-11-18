@@ -7,7 +7,7 @@ in
   home.username = "gergo";
   home.homeDirectory = "${usersDir}/gergo";
 
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
 
@@ -43,7 +43,7 @@ in
 
     shellAliases = {
       # vimwiki = "nvim -c :VimwikiIndex";
-      obsidian = "nvim -c :ObsidianQuickSwitch";
+      obsidian = "nvim -c :Obsidian quick_switch";
       gitclean = ''git branch --merged | egrep -v "(^\*|master|develop|main)" | xargs git branch -d'';
       darwin-update = "$HOME/.config/nix-darwin/darwin-update.sh";
       tableplus = ''SSH_AUTH_SOCK="~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock" open -a /Applications/TablePlus.app'';
@@ -112,7 +112,6 @@ in
         # direnv-vim
         (withConfig "inc-rename-nvim")
         camelcasemotion
-        nvim-treesitter-context
         (withConfig "harpoon2")
 
         # Autocompletion
@@ -138,12 +137,12 @@ in
         (withConfig "gitsigns-nvim")
         conflict-marker-vim
         vim-fugitive
-        vim-rhubarb
+        vim-rhubarb # enables GBrowse
         # gh-nvim # only in unstable atm
 
         vim-commentary
         # (withConfig "vim-rooter")
-        (withConfig "project-nvim")
+        # (withConfig "project-nvim")
         vim-repeat
         rnvimr
 
@@ -215,15 +214,21 @@ in
   #   }];
   # };
 
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
+  };
+
   programs.git =
     let
       commonConfig = {
         enable = true;
-        userName = "Szabo Gergely";
-        userEmail = "gege251@mailbox.org";
         signing.signByDefault = true;
-        difftastic.enable = true;
-        extraConfig = {
+        settings = {
+          user = {
+            name = "Szabo Gergely";
+            email = "gege251@mailbox.org";
+          };
           init.defaultBranch = "main";
           hub.protocol = "https";
           github.user = "szg251";
@@ -246,7 +251,7 @@ in
         signing = {
           key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP8SiZHctbdcQhuteXYuO1Yw4XgM/fO3QDTYKyyA4UKj";
         };
-        extraConfig = commonConfig.extraConfig // {
+        settings = commonConfig.settings // {
           credential.helper = "osxkeychain";
           gpg.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
         };
@@ -305,9 +310,11 @@ in
     # nodePackages.serverless
     # nodePackages.vercel
     nixos-rebuild
+    nix-sweep
 
     # Git/CI
     gh
+    jujutsu
     # circleci-cli
     # gitlab-runner
 
@@ -378,7 +385,7 @@ in
     # Other LSPs
     marksman # Markdown LSP
     nodePackages.vscode-langservers-extracted
-    postgres-lsp
+    postgres-language-server
     pgformatter
 
     # Swift
