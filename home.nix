@@ -33,13 +33,13 @@ in
       save = 10000000;
       size = 10000000;
     };
-
-    zplug = {
-      enable = true;
-      plugins = [
-        { name = "jeffreytse/zsh-vi-mode"; }
-      ];
-    };
+    plugins = [
+      {
+        name = "vi-mode";
+        src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+    ];
 
     shellAliases = {
       # vimwiki = "nvim -c :VimwikiIndex";
@@ -58,6 +58,7 @@ in
       GIT_EDITOR = EDITOR;
       PATH = "$HOME/bin:/usr/local/bin:$HOME/mutable_node_modules/bin:$PATH";
       DISABLE_AUTO_TITLE = "true";
+      ZVM_SYSTEM_CLIPBOARD_ENABLED = "true";
     };
     initContent = ''
       test -f ~/.nix-profile/etc/profile.d/nix.sh && source ~/.nix-profile/etc/profile.d/nix.sh
@@ -105,6 +106,7 @@ in
         (withConfig "nvim-autopairs")
         nvim-web-devicons
         (withConfig "nvim-tree-lua")
+        # (withConfig "mini-files")
         (withConfig "outline-nvim")
         (withConfig "nvim-lspconfig")
         litee-nvim # GH-nvim dependency
